@@ -1,0 +1,24 @@
+:root {
+  --primary: #2196F3;
+  --bg-color: #f0f2f5;
+  --text-main: #333;
+  --header-bg: #fff;
+  --card-bg: #fff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
