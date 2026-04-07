@@ -1,16 +1,21 @@
 import React from 'react';
 import './MovieCard.css';
 
-const MovieCard = ({ title, poster, rating, description }) => {
+const MovieCard = ({ movie }) => {
   return (
-    <div className="movie-card">
-      <img src={poster} alt={title} />
-      <div className="card-content">
-        <h3>{title}</h3>
-        <span className="rating">Оцінка: {rating}/10</span>
-        <p className="description">{description}</p>
+    <article className="movie-card">
+      <div className="poster-wrapper">
+        <img src={movie.poster} alt={`Постер ${movie.title}`} className="poster-image" />
+        <div className="rating-badge">★ {movie.rating}</div>
       </div>
-    </div>
+      <div className="movie-info">
+        <h4 className="movie-title">{movie.title}</h4>
+        <div className="movie-meta">
+          <span>{movie.year}</span> • <span>{movie.genre}</span>
+        </div>
+        <p className="movie-description">{movie.description}</p>
+      </div>
+    </article>
   );
 };
 

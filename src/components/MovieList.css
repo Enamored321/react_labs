@@ -1,43 +1,53 @@
-.main-content {
-  padding: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  box-sizing: border-box;
+.movie-list-section {
+  margin-top: 30px;
 }
 
-.main-content h2 {
-  margin-top: 0;
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.filters {
-  margin-bottom: 20px;
+.section-header h2 {
+  font-size: 24px;
+  color: #fff;
+}
+
+.category-filters {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
-.filters button {
+.filter-button {
+  background: var(--card-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
   padding: 8px 16px;
-  background-color: var(--card-bg);
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: inherit;
-  transition: background-color 0.2s;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
-.filters button:hover {
-  background-color: #eee;
-}
-
-.filters button.active {
-  background-color: var(--primary);
-  color: white;
+.filter-button:hover, .filter-button.active {
+  background: var(--primary);
+  color: #fff;
   border-color: var(--primary);
 }
 
-.movies-grid {
+.movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 25px;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
 }

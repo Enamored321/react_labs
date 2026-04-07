@@ -1,8 +1,74 @@
 .footer {
-  background-color: var(--header-bg);
-  padding: 20px;
+  background-color: var(--card-bg);
+  padding: 4rem 0 0 0;
+  margin-top: 4rem;
+  border-top: 1px solid var(--dark);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.brand-section {
+  max-width: 350px;
+}
+
+.brand-section p {
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+  line-height: 1.8;
+}
+
+.footer-links {
+  display: flex;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.footer-section h4 {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text-main);
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-section a {
+  color: var(--text-muted);
+  transition: var(--transition);
+  font-size: 0.9rem;
+}
+
+.footer-section a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
   text-align: center;
-  border-top: 1px solid #ddd;
-  color: #666;
-  margin-top: auto;
+  padding: 2rem;
+  background-color: var(--bg-color);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .footer-links {
+    gap: 2rem;
+  }
+  .brand-section {
+    max-width: 100%;
+  }
 }
