@@ -46,17 +46,29 @@
 }
 
 .auth-box {
-  color: #888;
-  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.auth-box a {
-  color: #ccc;
-  margin: 0 5px;
+.favorites-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  font-weight: bold;
+  background: rgba(229, 9, 20, 0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(229, 9, 20, 0.3);
 }
 
-.auth-box a:hover {
-  color: var(--primary);
+.favorites-indicator .icon {
+  font-size: 14px;
+}
+
+.divider {
+  color: #444;
 }
 
 @media (max-width: 768px) {

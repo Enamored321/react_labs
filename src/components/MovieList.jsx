@@ -3,7 +3,7 @@ import MovieCard from './MovieCard';
 import CategoryFilter from './CategoryFilter';
 import './MovieList.css';
 
-const MovieList = ({ movies, categories }) => {
+const MovieList = ({ movies, categories, onToggleFavorite }) => {
   return (
     <section className="movie-list-section" id="movies">
       <div className="section-header">
@@ -16,6 +16,7 @@ const MovieList = ({ movies, categories }) => {
           <MovieCard 
             key={movie.id} 
             movie={movie} 
+            onToggleFavorite={() => onToggleFavorite(movie.id)}
           />
         ))}
       </div>

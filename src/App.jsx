@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Main from './components/Main';
@@ -13,8 +13,8 @@ import lokiPoster from './assets/posters/loki.jpg';
 import wandavisionPoster from './assets/posters/wandavision.jpg';
 
 const App = () => {
-  // Джерело даних (масив об’єктів)
-  const movies = [
+  // Початкові дані (стан визначено через useState)
+  const [movies, setMovies] = useState([
     {
       id: 1,
       title: 'Залізна людина',
@@ -22,7 +22,8 @@ const App = () => {
       rating: 7.9,
       genre: 'Фантастика',
       year: '2008',
-      description: 'Геніальний мільярдер-винахідник Тоні Старк створює високотехнологічний залізний костюм.'
+      description: 'Геніальний мільярдер-винахідник Тоні Старк створює високотехнологічний залізний костюм.',
+      isFavorite: false
     },
     {
       id: 2,
@@ -31,7 +32,8 @@ const App = () => {
       rating: 8.0,
       genre: 'Екшн',
       year: '2012',
-      description: 'Наймогутніші герої Землі об\'єднуються, щоб зупинити Локі та його інопланетну армію.'
+      description: 'Наймогутніші герої Землі об\'єднуються, щоб зупинити Локі та його інопланетну армію.',
+      isFavorite: true
     },
     {
       id: 3,
@@ -40,7 +42,8 @@ const App = () => {
       rating: 8.2,
       genre: 'Екшн',
       year: '2021',
-      description: 'Пітер Паркер звертається до Доктора Стренджа по допомогу, що призводить до мультивсесвітньої кризи.'
+      description: 'Пітер Паркер звертається до Доктора Стренджа по допомогу, що призводить до мультивсесвітньої кризи.',
+      isFavorite: false
     },
     {
       id: 4,
@@ -49,7 +52,8 @@ const App = () => {
       rating: 8.0,
       genre: 'Фантастика',
       year: '2014',
-      description: 'Група міжгалактичних злочинців змушена об\'єднатися задля порятунку всесвіту.'
+      description: 'Група міжгалактичних злочинців змушена об\'єднатися задля порятунку всесвіту.',
+      isFavorite: false
     },
     {
       id: 5,
@@ -58,7 +62,8 @@ const App = () => {
       rating: 8.2,
       genre: 'Серіал',
       year: '2021',
-      description: 'Пригоди бога бешкетництва в таємничому Управлінні часовими змінами.'
+      description: 'Пригоди бога бешкетництва в таємничому Управлінні часовими змінами.',
+      isFavorite: false
     },
     {
       id: 6,
@@ -67,9 +72,10 @@ const App = () => {
       rating: 7.9,
       genre: 'Серіал',
       year: '2021',
-      description: 'Ванда і Віжн живуть ідеальним приміським життям, але починають підозрювати щось дивне.'
+      description: 'Ванда і Віжн живуть ідеальним приміським життям, але починають підозрювати щось дивне.',
+      isFavorite: false
     }
-  ];
+  ]);
 
   const categories = ['Усі', 'Екшн', 'Фантастика', 'Серіал'];
   
@@ -92,15 +98,28 @@ const App = () => {
     description: 'Найбільше зіткнення у всесвіті Marvel. Месники та їхні союзники повинні пожертвувати всім, щоб перемогти могутнього Таноса, перш ніж його руйнівний наступ знищить половину всесвіту.'
   };
 
+  // Функція-оновлювач для зміни статусу "улюблений" (like/unlike)
+  const handleToggleFavorite = (movieId) => {
+    setMovies(prevMovies => 
+      prevMovies.map(movie => 
+        movie.id === movieId ? { ...movie, isFavorite: !movie.isFavorite } : movie
+      )
+    );
+  };
+
+  // Розрахунок кількості в обраному для показу в Header
+  const favoritesCount = movies.filter(movie => movie.isFavorite).length;
+
   return (
     <>
-      <Header brand="MovieBase" navItems={navigation} />
+      <Header brand="MovieBase" navItems={navigation} favoritesCount={favoritesCount} />
       <div className="layout-wrapper">
         <Sidebar categories={sidebarCategories} />
         <Main 
           movies={movies} 
           categories={categories} 
           featuredMovie={featuredMovie}
+          onToggleFavorite={handleToggleFavorite}
         />
       </div>
       <Footer brand="MovieBase" navItems={navigation} />

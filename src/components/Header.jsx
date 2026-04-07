@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.css';
 
-const Header = ({ brand, navItems }) => {
+const Header = ({ brand, navItems, favoritesCount }) => {
   const [brandName, brandSuffix] = brand.split(/(?=[A-Z])/);
 
   return (
@@ -18,6 +18,10 @@ const Header = ({ brand, navItems }) => {
           </ul>
         </nav>
         <div className="auth-box">
+          <div className="favorites-indicator">
+            <span className="icon">❤️</span> {favoritesCount}
+          </div>
+          <div className="divider">|</div>
           <a href="#login">Вхід</a> | <a href="#register">Реєстрація</a>
         </div>
       </div>
