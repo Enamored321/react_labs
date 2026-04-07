@@ -1,0 +1,132 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  max-width: 650px;
+  width: 90%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.2s;
+  padding: 0;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: var(--primary);
+}
+
+.modal-body {
+  display: flex;
+  gap: 25px;
+  padding: 25px;
+}
+
+.modal-poster {
+  width: 220px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.modal-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.modal-info h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 26px;
+  color: #fff;
+  padding-right: 30px;
+}
+
+.modal-meta {
+  display: flex;
+  gap: 15px;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.rating-text {
+  color: #ffb400;
+  font-weight: bold;
+}
+
+.modal-description {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 30px;
+  flex-grow: 1;
+}
+
+.trailer-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.trailer-btn:hover {
+  background: #d60000;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .modal-body {
+    flex-direction: column;
+    padding: 20px;
+  }
+  .modal-poster {
+    width: 100%;
+    max-height: 350px;
+  }
+  .trailer-btn {
+    align-self: stretch;
+  }
+}

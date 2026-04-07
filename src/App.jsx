@@ -3,6 +3,8 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Main from './components/Main';
 import Footer from './components/Footer';
+import MovieModal from './components/MovieModal';
+
 
 // Імпорт зображень (постерів)
 import ironmanPoster from './assets/posters/ironman.jpg';
@@ -77,7 +79,10 @@ const App = () => {
     }
   ]);
 
-  const categories = ['Усі', 'Екшн', 'Фантастика', 'Серіал'];
+  const [filterMode, setFilterMode] = useState('Усі');
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
+  const categories = ['Усі', 'Екшн', 'Фантастика', 'Серіал', 'Обране'];
   
   const sidebarCategories = [
     'Аніме', 'Біографія', 'Бойовики', 'Вестерни', 
@@ -107,6 +112,13 @@ const App = () => {
     );
   };
 
+  // Фільтрація фільмів згідно обраної категорії
+  const filteredMovies = movies.filter(movie => {
+    if (filterMode === 'Усі') return true;
+    if (filterMode === 'Обране') return movie.isFavorite;
+    return movie.genre === filterMode;
+  });
+
   // Розрахунок кількості в обраному для показу в Header
   const favoritesCount = movies.filter(movie => movie.isFavorite).length;
 
@@ -116,13 +128,17 @@ const App = () => {
       <div className="layout-wrapper">
         <Sidebar categories={sidebarCategories} />
         <Main 
-          movies={movies} 
+          movies={filteredMovies} 
           categories={categories} 
+          filterMode={filterMode}
+          onFilterChange={setFilterMode}
           featuredMovie={featuredMovie}
           onToggleFavorite={handleToggleFavorite}
+          onSelectMovie={setSelectedMovie}
         />
       </div>
       <Footer brand="MovieBase" navItems={navigation} />
+      <MovieModal movie={selectedMovie} onClose={() => setSelectedMovie(null)} />
     </>
   );
 };
