@@ -1,15 +1,15 @@
 import React from 'react';
 import './MovieCard.css';
 
-const MovieCard = ({ movie, onToggleFavorite }) => {
+const MovieCard = ({ movie, onToggleFavorite, onSelectMovie }) => {
   return (
-    <article className={`movie-card ${movie.isFavorite ? 'favorite' : ''}`}>
+    <article className={`movie-card ${movie.isFavorite ? 'favorite' : ''}`} onClick={onSelectMovie}>
       <div className="poster-wrapper">
         <img src={movie.poster} alt={`Постер ${movie.title}`} className="poster-image" />
         <div className="rating-badge">★ {movie.rating}</div>
         <button 
           className={`favorite-btn ${movie.isFavorite ? 'active' : ''}`}
-          onClick={onToggleFavorite}
+          onClick={(e) => { e.stopPropagation(); onToggleFavorite(); }}
           aria-label="В обране"
         >
           {movie.isFavorite ? '❤️' : '🤍'}
