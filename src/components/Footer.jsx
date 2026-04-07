@@ -1,12 +1,14 @@
 import React from 'react';
 import './Footer.css';
 
-const Footer = () => {
+const Footer = ({ brand, navItems }) => {
+  const [brandName, brandSuffix] = brand.split(/(?=[A-Z])/);
+
   return (
     <footer className="footer">
       <div className="container footer-content">
         <div className="footer-section brand-section">
-          <h2 className="logo">Movie<span>Base</span></h2>
+          <h2 className="logo">{brandName}<span>{brandSuffix}</span></h2>
           <p>Ваше улюблене місце для перегляду фільмів та серіалів з оновленнями у реальному часі та великою галереєю.</p>
         </div>
         
@@ -14,9 +16,9 @@ const Footer = () => {
           <div className="footer-section">
             <h4>Швидкі Посилання</h4>
             <ul>
-              <li><a href="#home">Головна</a></li>
-              <li><a href="#movies">Фільми</a></li>
-              <li><a href="#series">Серіали</a></li>
+              {navItems.map((item, index) => (
+                <li key={index}><a href={item.link}>{item.name}</a></li>
+              ))}
             </ul>
           </div>
           
@@ -31,7 +33,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} MovieBase. Усі права захищені.</p>
+        <p>&copy; {new Date().getFullYear()} {brand}. Усі права захищені.</p>
       </div>
     </footer>
   );

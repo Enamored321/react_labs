@@ -1,19 +1,20 @@
 import React from 'react';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ brand, navItems }) => {
+  const [brandName, brandSuffix] = brand.split(/(?=[A-Z])/);
+
   return (
     <header className="header">
       <div className="container header-container">
         <div className="logo">
-          Movie<span>Base</span>
+          {brandName}<span>{brandSuffix}</span>
         </div>
         <nav className="nav">
           <ul className="nav-list">
-            <li><a href="#home">Головна</a></li>
-            <li><a href="#movies">Фільми</a></li>
-            <li><a href="#series">Серіали</a></li>
-            <li><a href="#about">Про нас</a></li>
+            {navItems.map((item, index) => (
+              <li key={index}><a href={item.link}>{item.name}</a></li>
+            ))}
           </ul>
         </nav>
         <div className="auth-box">
